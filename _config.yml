@@ -18,7 +18,7 @@ timezone: Asia/Kolkata
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: MK # the main title
+title: Manojkiran Eda # the main title
 
 tagline: Manoj's personal blog
 
@@ -41,7 +41,7 @@ social:
   email: manojkiran.eda@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username # change to your twitter homepage
+    - https://twitter.com/ManojkiranEda # change to your twitter homepage
     - https://github.com/manojkiraneda # change to your github homepage
     # Uncomment below to add more social links
     - https://www.facebook.com/manojkiraneda
