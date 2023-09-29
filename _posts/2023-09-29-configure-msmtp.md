@@ -183,9 +183,9 @@ that annoyance...
 ## Store your password in the system keyring
 
 For this part, we'll make use of the `libsecret` tool to store the password in
-the system keyring via the [Secret Service API](). It means that your desktop
-environment should implement the Secret Service specification, which is the case
-for both GNOME and KDE.
+the system keyring via the [Secret Service API](https://specifications.freedesktop.org/secret-service/latest/).
+It means that your desktop environment should implement the Secret Service
+specification, which is the case for both GNOME and KDE.
 
 Note that GNOME provides `Seahorse` to have a look at your secrets, KDE has the
 `KDE Wallet`. There's also `KeePassXC`, which I have only heard of but never used.
