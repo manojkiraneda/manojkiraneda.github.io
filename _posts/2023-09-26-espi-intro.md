@@ -5,12 +5,11 @@ categories: ["protocols"]
 tags: ["hardware protocols", "hardware spec"]
 ---
 
-eSPI stands for enhanced serial pheripheral interface. The [eSPI base spec](https://www.intel.com/content/dam/support/us/en/documents/software/chipset-software/327432-004_espi_base_specification_rev1.0_cb.pdf)
-talks about the architectural details of the eSPI bus interface for both client 
-& server platforms.
+eSPI stands for enhanced serial pheripheral interface. The [eSPI base spec](https://www.intel.com/content/dam/support/us/en/documents/software/chipset-software/327432-004_espi_base_specification_rev1.0_cb.pdf) talks about the architectural
+details of the eSPI bus interface for both client & server platforms.
 
-The devices that can be supported over the eSPI interface includes but not necessary
-limited to Embedded Controller (EC), Baseboard Management Controller (BMC),
+The devices that can be supported over the eSPI interface includes but not
+necessary limited to Embedded Controller (EC), Baseboard Management Controller (BMC),
 Super-I/O (SIO) and Port-80 debug card.
 
 Prior to this specification, Embedded Controller (EC), Baseboard Management
