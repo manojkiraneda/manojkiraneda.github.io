@@ -1,5 +1,5 @@
 ---
-title: "Send emails from your terminal"
+title: "Configure msmtp"
 date: "2023-09-29 8:38AM"
 categories: ["workflow"]
 tags: ["workflow", "msmtp", "smtp-gmail", "send-mail"]
