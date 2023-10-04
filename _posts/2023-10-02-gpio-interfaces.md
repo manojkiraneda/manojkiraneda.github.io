@@ -98,7 +98,6 @@ the following commands:
 ```
 
 This interface is very simple and works pretty well, but has some deficiencies:
-
  - The allocation of the GPIO is not tied to any process, so if the process using
    a GPIO ends its execution or crashes, the GPIO line may remain exported.
  - We can have multiple processes accessing the same GPIO line, so concurrency
@@ -109,7 +108,7 @@ This interface is very simple and works pretty well, but has some deficiencies:
  - There is no interface to configure the GPIO line (open-source, open-drain, etc).
  - The numbers assigned to GPIO lines are not stable.
 
- ## The new way: chardev interface
+## The new way: chardev interface
 
 Since Linux version 4.8 the GPIO sysfs interface is deprecated, and now we have
 a new API based on character devices to access GPIO lines from user space.
