@@ -166,4 +166,30 @@ to get out of it, or hit Enter to submit your work upstream.
 b4 send
 ```
 
+## Issue with gnome-keyring & ssh session on a VM & b4 send
+If you are some one who is using wsl (or) a linux VM for the kernel development
+and sending b4 commands from an ssh session(to the linux VM), we need to make
+sure that we unlock the gnome-keyring for every ssh session. Otherwise a `b4 send`
+would always prompts the password even though we have the gmail app password set
+in the keyring. (if you dont understand what this is about , you might wanna look
+at [this](https://manojkiraneda.github.io/posts/configure-msmtp/) blog post first
+which talks about setting up msmtp as smtp server for sending emails from the
+terminal)
+
+There might be more cleaner ways to deal with this problem , but a simple hack
+that i could come up with is a simple bash snippet put in my bashrc file
+
+```bash
+#!/bin/bash
+
+echo -n 'Unlocking the keyring, please provide the login password : ' >&2
+read -s _UNLOCK_PASSWORD || return
+killall -q -u "$(whoami)" gnome-keyring-daemon
+eval $(echo -n "${_UNLOCK_PASSWORD}" \
+           | gnome-keyring-daemon --daemonize --login \
+           | sed -e 's/^/export /')
+unset _UNLOCK_PASSWORD
+echo '' >&2
+```
+
 Thanks for reading the post, while this post does not cover every option 
