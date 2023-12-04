@@ -331,4 +331,4 @@ ast# bootm
      Hash algo:    sha256
 ```
 
-Vola!! , you have booted your custom fit image using u-boot via tftp.
+Vola!!, you have booted the custom fit image using u-boot via tftp.
