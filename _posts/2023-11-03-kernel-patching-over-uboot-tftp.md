@@ -185,7 +185,7 @@ default via 1.2.3.4 dev eth0  src 1.2.3.0  metric 1024
 
 Grab the default gateway : `1.2.3.0`
 
-3. MAC address
+3.MAC address
 
 ```bash
 root@sbp1:~# ip link show
