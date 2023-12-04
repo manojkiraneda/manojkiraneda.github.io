@@ -7,7 +7,7 @@ tags: ["device drivers", "kernel interface", "Linux", "GPIO"]
 
 ## What is GPIO ?
 
-A “General Purpose Input/Output” (GPIO) is a flexible software-controlled digital
+A `General Purpose Input/Output` (GPIO) is a flexible software-controlled digital
 signal. Each GPIO represents a bit connected to a particular pin. Board schematics
 show which external hardware connects to which GPIOs.
 
@@ -20,7 +20,7 @@ that connect using the I2C or SPI serial buses.
 
 The exact capabilities of GPIOs vary between systems. Common options:
 
-* Output values are writable (high=1, low=0). Some chips also have options about
+* Output values are writable `(high=1, low=0)`. Some chips also have options about
 how that value is driven, so that for example only one value might be driven,
 supporting `wire-OR` and similar schemes for the other value (notably, `open drain`
 signaling).
@@ -62,6 +62,20 @@ signaling. That term applies to CMOS transistors; “open collector” is used f
 A pullup or pulldown resistor causes the high or low signal level. This is sometimes
 called a `wire-AND`; or more practically, from the negative logic (low=true)
 perspective this is a `wire-OR`.
+
+## GPIOs with debounce support
+
+Debouncing is a configuration set to a pin indicating that it is connected to a
+mechanical switch or button, or similar that may bounce. Bouncing means the line
+is pulled high/low quickly at very short intervals for mechanical reasons. This
+can result in the value being unstable or irqs fireing repeatedly unless the line
+is debounced.
+
+Debouncing in practice involves setting up a timer when something happens on the
+line, wait a little while and then sample the line again, so see if it still has
+the same value (low or high). This could also be repeated by a clever state machine,
+waiting for a line to become stable. In either case, it sets a certain number of
+milliseconds for debouncing, or just `on/off` if that time is not configurable.
 
 ## GPIO Interface
 
