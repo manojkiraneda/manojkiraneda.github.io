@@ -85,7 +85,7 @@ Austin_Team:tftpboot$ ip addr show
     link/ether c8:5b:76:af:30:ad brd ff:ff:ff:ff:ff:ff
 3: wlp4s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
     link/ether f0:d5:bf:f9:d8:a0 brd ff:ff:ff:ff:ff:ff
-    inet 9.57.217.0/23 brd 9.57.217.255 scope global dynamic noprefixroute wlp4s0
+    inet 5.6.7.8/23 brd 5.6.7.255 scope global dynamic noprefixroute wlp4s0
        valid_lft 9156sec preferred_lft 9156sec
     inet6 2620:1f7:817:c5a::32:2ce/128 scope global dynamic noprefixroute
        valid_lft 37476sec preferred_lft 21276sec
@@ -167,7 +167,7 @@ root@sbp1:~# ip addr show
        valid_lft forever preferred_lft forever
 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000
     link/ether fe:02:03:04:fe:c4 brd ff:ff:ff:ff:ff:ff
-    inet 9.56.10.104/24 brd 9.56.10.255 scope global dynamic eth0
+    inet 1.2.3.4/24 brd 1.2.3.255 scope global dynamic eth0
        valid_lft 34382sec preferred_lft 34382sec
     inet6 fe80::fc02:3ff:fe04:fec4/64 scope link
        valid_lft forever preferred_lft forever
@@ -175,19 +175,16 @@ root@sbp1:~# ip addr show
     link/ether fe:02:03:04:fe:c5 brd ff:ff:ff:ff:ff:ff
 ```
 
-Grab the ip from eth0  : `9.56.10.104`
+Grab the ip from eth0  : `1.2.3.4`
 2. Default gateway through which BMC is connected to the network
 
 ```bash
 root@sbp1:~# ip route show
-default via 9.56.10.1 dev eth0  src 9.56.10.104  metric 1024
-9.0.0.1 via 9.56.10.1 dev eth0  src 9.56.10.104  metric 1024
-9.0.0.2 via 9.56.10.1 dev eth0  src 9.56.10.104  metric 1024
-9.56.10.0/24 dev eth0 scope link  src 9.56.10.104  metric 1024
-9.56.10.1 dev eth0 scope link  src 9.56.10.104  metric 1024
+default via 1.2.3.4 dev eth0  src 1.2.3.0  metric 1024
 ```
 
-Grab the default gateway : `9.56.10.1`
+Grab the default gateway : `1.2.3.0`
+
 3. MAC address
 
 ```bash
@@ -210,7 +207,7 @@ tftp server:
 1.tftp server ip address
 
 ```bash
-ast# setenv serverip 9.57.217.0
+ast# setenv serverip 5.6.7.8
 ```
 
 2.bmc ipaddress
@@ -218,14 +215,15 @@ ast# setenv serverip 9.57.217.0
 Set the BMC ip address from the collected information in userspace.
 
 ```bash
-ast#  setenv ipaddr 9.56.10.104
+ast#  setenv ipaddr 1.2.3.4
 ```
 
 3.gateway ip address
 
 Set the gateway ip address from the collected information in userspace
+
 ```bash
-ast# setenv gatewayip 9.56.10.1
+ast# setenv gatewayip 1.2.3.0
 ```
 
 4.Double check , if you have set the information correct
@@ -243,18 +241,18 @@ eth1addr=fe:02:03:04:fe:c5
 ethact=ftgmac@1e670000
 ethaddr=fe:02:03:04:fe:c4
 fdtcontroladdr=9cf90188
-gatewayip=9.56.10.1
-ipaddr=9.56.10.104
+gatewayip=1.2.3.0
+ipaddr=1.2.3.4
 loadaddr=0x83000000
 netmask=255.255.255.0
-serverip=9.57.217.0
+serverip=5.6.7.8
 stderr=serial@1e783000
 stdin=serial@1e783000
 stdout=serial@1e783000
 verify=yes
 ```
 
-5.Save the uboot properties to persistent flash 
+5.Save the uboot properties to persistent flash
 
 ```bash
 ast# saveenv
@@ -263,15 +261,15 @@ Erasing SPI flash...Writing to SPI flash...done
 OK
 ```
 
-6.Now lets ping the `tftp` server `(9.57.217.0)`
+6.Now lets ping the `tftp` server `(5.6.7.8)`
 
 Make sure your BMC u-boot can ping the `tftp` server
 
 ```bash
-ast# ping 9.57.217.0
+ast# ping 5.6.7.8
 ftgmac@1e670000: link up, 100 Mbps full-duplex mac:fe:02:03:04:fe:c4
 Using ftgmac@1e670000 device
-host 9.57.217.0 is alive
+host 5.6.7.8 is alive
 ```
 
 7.Place the openbmc build generated fit image in the tftp server directory
@@ -296,10 +294,10 @@ fit
 8.Now load the fit image from the tftp server from the uboot tftp client
 
 ```bash
-ast# tftp 9.57.217.0:fit
+ast# tftp 5.6.7.8:fit
 ftgmac@1e670000: link up, 100 Mbps full-duplex mac:fe:02:03:04:fe:c4
 Using ftgmac@1e670000 device
-TFTP from server 9.57.217.0; our IP address is 9.56.10.104; sending through gateway 9.56.10.1
+TFTP from server 5.6.7.8; our IP address is 1.2.3.4; sending through gateway 1.2.3.0
 Filename 'fit'.
 Load address: 0x83000000
 Loading: #################################################################
@@ -333,4 +331,4 @@ ast# bootm
      Hash algo:    sha256
 ```
 
-Vola!! , you have booted you custom fit image using u-boot via tftp.
+Vola!! , you have booted your custom fit image using u-boot via tftp.
