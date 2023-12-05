@@ -24,6 +24,7 @@ recover the system even after i crash it. I found 2 ways to do this :
 
 1. Switch sides of BMC flash in uboot
 2. Kernel live patching via u-boot tftp
+3. Use simulators like qemu, simics
 
 ## Switch sides of BMC flash in uboot
 
@@ -37,7 +38,7 @@ next boot in u-boot, so that we can always boot from the golden side. And from
 there we can re-flash the non-active side and recover the system.
 
 But unfortunately the system that i am working on does not have the support for
-side switching the bmc code in u-boot. So i am left with option #2.
+side switching the bmc code in u-boot. So i cannot use it.
 
 ## Kernel patching via u-boot tftp
 
@@ -45,6 +46,15 @@ While U-Boot is used to load and execute the OS after initial programming, it
 can also be used to program the OS images to the local flash. This page describes
 the process of using U-Boot to load Linux kernel and filesystem images from a
 TFTP server and save them to the local flash for use during the boot process.
+
+## Use simulators like qemu, simics
+
+We could also load the custom linux image on an emulator like qemu/simics, but
+we should have qemu/simics hardware models written to be able to test the software
+side of things, for example : if we are planning to test espi protocol, we need
+to have espi hardware modelled in qemu/simics. Unfortunately the system that i am
+working on - does not even have the hardware models in qemu/simics. So i am left with
+just option #2.
 
 ### Requirements
 
