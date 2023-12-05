@@ -24,7 +24,7 @@ recover the system even after i crash it. I found 2 ways to do this :
 
 1. Switch sides of BMC flash in uboot
 2. Kernel live patching via u-boot tftp
-3. Use simulators like qemu, simics
+3. Use simulators like qemu or simics
 
 ## Switch sides of BMC flash in uboot
 
