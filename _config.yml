@@ -82,7 +82,7 @@ avatar: 'https://pbs.twimg.com/profile_images/1706373642819604481/GQ6-_F_M_400x4
 toc: true
 
 comments:
-  active: giscus 
+  active: 'giscus' 
   # The global switch for posts comments, e.g., 'disqus'.  Keep it empty means disable
   # The active options are as follows:
   disqus:
