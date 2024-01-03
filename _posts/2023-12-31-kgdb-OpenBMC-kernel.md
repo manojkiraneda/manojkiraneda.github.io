@@ -63,9 +63,10 @@ folder, with all virtual files populated to provide its configuration.
 I hate debugging with traces & printks.
 
 I have heard that GDB in client - server mode could actually work on live kernel,
-so my expectation was that i could use a GDB client and connect to the live kernel
-and stop at my device driver probe function, and walk though the code in step mode.
-And in the process was expecting the route cause of the problem to be revealed.
+so my expectation was that I could use a GDB client and connect to the live kernel
+running on BMC and stop at my device driver probe function, and walk through the
+code in step mode and in the process was expecting the root cause of the problem
+to be revealed.
 
 ## Ingredients needed to get KGDB working
 
@@ -109,7 +110,7 @@ KGDB is a GDB Server implementation integrated in the Linux Kernel, It supports:
 It enables full control over kernel execution on target, including memory read
 and write, step-by-step execution and even breakpoints in interrupt handler.
 
-In my case , i have small laptop(`/dev/ttyUSB1`) connected to the serial console
+In my case , I have small laptop(`/dev/ttyUSB1`) connected to the serial console
 of the BMC(`/dev/ttyS0`),so that would be my `Host`(as per the above picture) and
 BMC is my `Target`.
 
@@ -240,33 +241,25 @@ like this :
 [    9.952644] KGDB: Waiting for connection from remote gdb...
 ```
 
-### [Optional] TUI support for GDB
+### GDB client on host
 
-In openbmc , by default GDB is built without `tui` support, to enable it, stick
-the below content in your `meta-oem/recipes-devtools/gdb/gdb-%.bbappend` file
-
-```bash
-PACKAGECONFIG += "tui"
-```
-
-### GDB client in host
-
-There are two steps in configuring the GDB client:
+There are two steps in configuring the GDB client on host:
 
 1. Agent Proxy
 2. Configuring the GDB client on host to connect to KGDB on target
 
-### Agent Proxy
+### Agent Proxy [should be run on host]
 
-If you have only one serial port and want to use for both console and KGDB then
-you have to go with agent proxy. `agent-proxy` is nothing more then a tty → tcp
-connection mux that can allow you to connect more than one client application
-to a tty. By using it, we can run the serial port client and gdb process simultaneously.
+Since, we have only one serial port on host and want to use it for both console
+and KGDB we have to go with agent proxy. `agent-proxy` is nothing more than
+a tty → tcp connection mux that can allow you to connect more than one client
+application to a tty. By using it, we can run the serial port client and gdb
+process simultaneously.
 
-Here is the following syntax to run the agent-proxy command :
+Here is the following syntax to run the agent-proxy command on host:
 
 ```bash
-agent-proxy CONSOLE_PORT^DEBUG_PORT IP_ADDR PORT
+host@host$ agent-proxy CONSOLE_PORT^DEBUG_PORT IP_ADDR PORT
 ```
 
 ```text
@@ -291,7 +284,7 @@ agent-proxy CONSOLE_PORT^DEBUG_PORT IP_ADDR PORT
 
 #### Building a Proxy Agent
 
-Below are the steps to build and run a proxy agent:
+Below are the steps to build and run a proxy agent on host:
 
 ```bash
 git clone http://git.kernel.org/pub/scm/utils/kernel/kgdb/agent-proxy.git
@@ -302,7 +295,7 @@ cd agent-proxy ; make
 `/dev/ttyUSB1` if you are using USB to serial device node.
 Now, you have `5550 port for console` and `5551 port for kgdb`
 
-#### To get the console logs
+#### To get the console logs of the target from host
 
 You could use telnet to get to console logs:
 
@@ -312,15 +305,37 @@ telnet localhost 5550
 
 ### Configuring the GDB client on host to connect to KGDB on target
 
-Source the yocto built sdk, so that we could use the GDB cross compiled for arm:
+In order to debug the arm binaries , we need a version of GDB that is cross compiled
+to arm architecture, yocto already provides a way to generate the cross compiled
+binaries using something called as sdk.
+
+The way to populate the sdk is :
 
 ```bash
+host@host$ bitbake -C populate_sdk obmc-phosphor-image
+```
+
+Now , source the yocto built sdk, so that we could use the GDB cross compiled for
+arm:
+
+```bash
+Austin_Team:manoj_test$ source environment-setup-armv7ahf-vfpv4d16-openbmc-linux-gnueabi
 Austin_Team:manoj_test$ echo $GDB
 arm-openbmc-linux-gnueabi-gdb
 ```
 
-Run the gdb with the generated vmlinux binary that we have obtained after compiling
-the kernel with `CONFIG_DEBUG_INFO=y` as mentioned above.
+#### [Optional] TUI support for GDB
+
+In openbmc , by default GDB is built without `tui` support, to enable it, stick
+the below content in your `meta-<oem>/recipes-devtools/gdb/gdb-%.bbappend` file
+
+```bash
+PACKAGECONFIG += "tui"
+```
+
+Now that we have got the GDB client, run the gdb with the generated vmlinux
+binary that we have obtained after compiling the kernel with `CONFIG_DEBUG_INFO=y`
+as mentioned above.
 
 ```bash
 Austin_Team:manoj_test$ $GDB vmlinux
@@ -369,7 +384,7 @@ current executing line visually, you would need to start $GDB with `--tui` optio
 Vola !! :dancer: Now you can use all GDB commands , dump registers/variables, observer the
 kernel stack frames & do much more cool stuff.
 
-### Problem for another day
+## Problem for another day
 
 So, now back to our problem of why does my mtd device not populated in `/sys/class/mtd` ?
 To answer this, i need to put a break point in the probe function of my driver
