@@ -240,6 +240,15 @@ like this :
 [    9.952644] KGDB: Waiting for connection from remote gdb...
 ```
 
+### [Optional] TUI support for GDB
+
+In openbmc , by default GDB is built without `tui` support, to enable it, stick
+the below content in your `meta-oem/recipes-devtools/gdb/gdb-%.bbappend` file
+
+```bash
+PACKAGECONFIG += "tui"
+```
+
 ### GDB client in host
 
 There are two steps in configuring the GDB client:
