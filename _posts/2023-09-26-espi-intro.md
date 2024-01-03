@@ -5,7 +5,7 @@ categories: ["protocols"]
 tags: ["hardware protocols", "hardware spec"]
 ---
 
-eSPI stands for enhanced serial pheripheral interface. The [eSPI base spec](https://www.intel.com/content/dam/support/us/en/documents/software/chipset-software/327432-004_espi_base_specification_rev1.0_cb.pdf) talks about the architectural
+eSPI stands for enhanced serial peripheral interface. The [eSPI base spec](https://www.intel.com/content/dam/support/us/en/documents/software/chipset-software/327432-004_espi_base_specification_rev1.0_cb.pdf) talks about the architectural
 details of the eSPI bus interface for both client & server platforms.
 
 The devices that can be supported over the eSPI interface includes but not
@@ -25,9 +25,7 @@ eSPI hardware protocol supports 4 channels:
 3. Out-of-band channel
 4. Flash Access channel
 
-
-
-### Virtual wire channel :
+### Virtual wire channel
 
 This channel allows the eSPI master to claim the General-Purpose I/O (GPIO) pins
 physically resided on the eSPI slave side as part of its own virtual I/O pins.
@@ -40,7 +38,7 @@ the slave side.
 So this interface could leverage the kernel's GPIO subsystem to toggle the GPIO's
 which are physically connected on the BMC side(eSPI Slave).
 
-### Out of band Channel (for tunneled SMBus) Messages:
+### Out of band Channel (for tunneled SMBus) Messages
 
 The SMBus packets can be tunneled through eSPI as Out-Of-Band(OOB) messages. The
 whole SMBus packet is embedded inside the eSPI OOB message as data. So the host
@@ -50,9 +48,6 @@ Only SMBus block writes are tunneled through the eSPI OOB message. These `includ
 the SMBus Management Component Transport Protocol (MCTP) packets which are
 based on the SMBus block write protocol.
 
-
-
-
 Master Attached Flash Sharing (MAFS) :
 
 Master Attached Flash Sharing refers to the scheme where flash components are
@@ -61,10 +56,8 @@ the shared flash component through the Flash Access channel. The flash component
 may be on an independent SPI interface, or on a shared SPI/eSPI interface depending
 on the system configuration
 
-
 Slave Attached Flash Sharing
 Slave Attached Flash Sharing scheme is defined only for server platforms and it is not
 included in the eSPI base specification.
 The detail of the Slave Attached Flash Sharing is described in the eSPI addendum for
 server platforms.
-

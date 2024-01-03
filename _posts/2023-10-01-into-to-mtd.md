@@ -8,29 +8,30 @@ tags: ["device drivers", "kernel interface", "Linux", "mtd", "flash driver"]
 `Memory Technology Device` (MTD) is the name of the Linux subsystem that handles
 most raw flash devices, such as `NOR`, `NAND`, `dataflash`, and `SPI flash`. It
 provides both character and block access to these devices, as well as a number
-of specialized filesystems.
+of specialized filesystem.
 
 ## Device support
 
 The following devices are supported by the MTD subsystem:
- - NAND Flash
- - NOR Flash
- - One NAND Flash
- - Atmel Data Flash
- - SPI Flash
+
+- NAND Flash
+- NOR Flash
+- One NAND Flash
+- Atmel Data Flash
+- SPI Flash
 
 The following devices are `NOT` handled by the MTD subsystem, even though they are
 commonly referred to as `flash`. Many of these include Flash Translation Layer (FTL)
 hardware that takes care of many of the concerns surrounding flash usage,
 such as wear-leveling and bad blocks.
 
- - USB Sticks — handled by USB Host and SCSI subsystems
- - Compact Flash — handled by the PC Card/IDE subsystems, depending on the
+- USB Sticks — handled by USB Host and SCSI subsystems
+- Compact Flash — handled by the PC Card/IDE subsystems, depending on the
    implementation
- - EEPROMs — handled by either the SPI EEPROM driver, or I2C EEPROM driver
- - MMC/SD Cards — handled by the MMC subsystem
+- EEPROMs — handled by either the SPI EEPROM driver, or I2C EEPROM driver
+- MMC/SD Cards — handled by the MMC subsystem
 
-## Overview 
+## Overview
 
 The MTD subsystem provides a number of mechanisms for interacting with raw flash
 chips. It consists of a number of generic drivers for classes of chips (NAND, NOR),
@@ -52,26 +53,25 @@ track of the total operational time of the board. If we were to update this file
 once a minute, and always use the same block when storing the file, that block
 would wear down after around 70 days on flash rated for 100,000 erase/program
 cycles.
- 
+
 Wear-leveling ensures that this burden is spread around to multiple blocks, which
 increases the overall life of the chip. MTD itself doesn't perform wear-leveling,
 but many of the flash filesystems do.
 
-### Bad Blocks 
+### Bad Blocks
 
 One distinguishing feature of NAND flash is that it is allowed to contain bad
 blocks straight from the factory. These bad blocks are tracked on the chip so that
 software can skip them when necessary. This allows the manufacturers to achieve
 a much larger yield, and therefore decrease the costs of the chips. Most (if not
 all) NAND flash manufacturers will also guarantee that the first block is good,
-allowing you to use that space for a bootloader.
+allowing you to use that space for a boot loader.
 
 Linux MTD also has facilities for detecting and tracking bad blocks on NAND chips.
 Linux generates a bad block table (bbt) and stores this information in the last
 two good blocks of the chip. Most Linux-capable bootloaders also treat NAND in
 this way. When using a flash-friendly filesystem, or userspace MTD utilities, bad
 blocks are automatically handled.
-
 
 ### Is an MTD device a block device or a char device?
 
@@ -89,5 +89,4 @@ type to match flash characteristics was created: `MTD`.
 
 So MTD is neither a block nor a char device. There are translations to use them,
 as if they were. But those translations are nowhere near the original, just like
-translated Chinese poems. 
-
+translated Chinese poems.

@@ -62,6 +62,6 @@ manojeda@manojeda-vm$ which clangd
 /usr/bin/clangd
 ```
 
-## Config files 
+## Config files
 
-Below are the config files that would add clang lsp to neovim
+Below are the config files that would add clang lsp to neovim:

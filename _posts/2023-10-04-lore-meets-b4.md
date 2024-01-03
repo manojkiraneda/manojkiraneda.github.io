@@ -11,18 +11,21 @@ it easier to participate in a patch-based workflows, like those used in the
 Linux kernel development.
 
 It can do things like :
- - rearrange the patches in proper order
- - tally up various follow-up trailers like Reviewed-by, Acked-by, etc
- - check if a newer series revision exists and automatically grab it
+
+- rearrange the patches in proper order
+- tally up various follow-up trailers like Reviewed-by, Acked-by, etc
+- check if a newer series revision exists and automatically grab it
 
 Starting with version `0.10` b4 can:
- - create and manage patch series and cover letters
- - track and auto-reroll series revisions
- - display range-diffs between revisions
- - apply trailers received from reviewers and maintainers
- - submit patches without needing a valid SMTP gateway
 
-## Install b4 
+- create and manage patch series and cover letters
+- track and auto-reroll series revisions
+- display range-diffs between revisions
+- apply trailers received from reviewers and maintainers
+- submit patches without needing a valid SMTP gateway
+
+## Install b4
+
 If you want to try it out, you can install `b4` using:
 
 ```bash
@@ -43,7 +46,7 @@ b4 prep -n dts-aspeed-typo -f dev-6.5
 This creates a brach named `b4/dts-aspeed-typo` based of the dev-6.5 tag.It also
 add an empty commit for the cover letter which we will edit later.
 
-## Grab a patch to test 
+## Grab a patch to test
 
 If we are not grabbing any patch of others to test/rework on, this step is can be
 skipped.
@@ -100,11 +103,11 @@ git add <file>
 git commit -s
 ```
 
-## Edit the cover letter 
+## Edit the cover letter
 
 If you plan to submit a single patch, then the cover letter is not that necessary
 and will only be used to track the destination addresses and changelog entries.
-You can delete most of the template content and leave just the title and sign-off. 
+You can delete most of the template content and leave just the title and sign-off.
 
 we can edit the cover letter by using the following command:
 
@@ -133,10 +136,11 @@ b4 send -o /tmp/mypatch
 ```
 
  Good things to check are:
- - the From: address
- - the To: and Cc: addresses
- - general patch formatting
- - cover letter formatting (if more than 1 patch in the series)
+
+- the From: address
+- the To: and Cc: addresses
+- general patch formatting
+- cover letter formatting (if more than 1 patch in the series)
 
 If everything looks sane, one more recommended step is to run checkpatch.pl from
 the top of the kernel tree:
@@ -145,12 +149,11 @@ the top of the kernel tree:
 ./scripts/checkpatch.pl /tmp/mypatch/*
 ```
 
-
 ## Reflect the email to yourself
 
 This is the last step to use before sending off your contribution. Note, that it
-will fill out the To: and Cc: headers of all messages with actual recipients, 
-but `it will NOT actually send mail to them, just to yourself`. 
+will fill out the To: and Cc: headers of all messages with actual recipients,
+but `it will NOT actually send mail to them, just to yourself`.
 
 ```bash
 b4 send --reflect
@@ -167,6 +170,7 @@ b4 send
 ```
 
 ## Issue with gnome-keyring & ssh session on a VM & b4 send
+
 If you are some one who is using wsl (or) a linux VM for the kernel development
 and sending b4 commands from an ssh session(to the linux VM), we need to make
 sure that we unlock the gnome-keyring for every ssh session. Otherwise a `b4 send`
@@ -192,4 +196,4 @@ unset _UNLOCK_PASSWORD
 echo '' >&2
 ```
 
-Thanks for reading the post, while this post does not cover every option 
+Thanks for reading the post, while this post does not cover every option

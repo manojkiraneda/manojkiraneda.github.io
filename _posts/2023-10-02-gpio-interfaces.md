@@ -45,7 +45,7 @@ sensing a switch, and so on.
 
 ### Active-High and Active-Low
 
-It is natural to assume that a GPIO is “active” when its output signal is 
+It is natural to assume that a GPIO is “active” when its output signal is
 1 (“high”), and inactive when it is 0 (“low”). However in practice the signal of
 a GPIO may be inverted before is reaches its destination, or a device could decide
 to have different conventions about what “active” means. Such decisions should be
@@ -90,17 +90,16 @@ To manage the GPIO registration and allocation there is a framework inside the
 Linux kernel called gpiolib. This framework provides an API to both device drivers
 running in kernel space and user space applications.
 
-
 ## The old way: sysfs interface
 
 Until Linux version 4.7, the interface to manage GPIO lines in user space has
 always been in sysfs via files exported at /sys/class/gpio. So for example, if I
 want to set a GPIO, I would have to:
 
- - Identify the number of the GPIO line.
- - Export the GPIO writing its number to /sys/class/gpio/export.
- - Configure the GPIO line as output writing out to /sys/class/gpio/gpioX/direction.
- - Set the GPIO writing 1 to /sys/class/gpio/gpioX/value.
+* Identify the number of the GPIO line.
+* Export the GPIO writing its number to /sys/class/gpio/export.
+* Configure the GPIO line as output writing out to /sys/class/gpio/gpioX/direction.
+* Set the GPIO writing 1 to /sys/class/gpio/gpioX/value.
 
 As a practical example, to set GPIO 504 from user space, we would have to execute
 the following commands:
@@ -112,15 +111,16 @@ the following commands:
 ```
 
 This interface is very simple and works pretty well, but has some deficiencies:
- - The allocation of the GPIO is not tied to any process, so if the process using
+
+* The allocation of the GPIO is not tied to any process, so if the process using
    a GPIO ends its execution or crashes, the GPIO line may remain exported.
- - We can have multiple processes accessing the same GPIO line, so concurrency
+* We can have multiple processes accessing the same GPIO line, so concurrency
    could be a problem.
- - Writing to multiple pins would require open()/read()/write()/close() operations
+* Writing to multiple pins would require open()/read()/write()/close() operations
    to a lot of files (export, direction, value, etc).
- - The polling process to catch events (interrupts from GPIO lines) is not reliable.
- - There is no interface to configure the GPIO line (open-source, open-drain, etc).
- - The numbers assigned to GPIO lines are not stable.
+* The polling process to catch events (interrupts from GPIO lines) is not reliable.
+* There is no interface to configure the GPIO line (open-source, open-drain, etc).
+* The numbers assigned to GPIO lines are not stable.
 
 ## The new way: chardev interface
 
@@ -141,8 +141,8 @@ Although this new char device interface prevents manipulating GPIO with standard
 command-line tools like echo and cat, it has some advantages when compared to the
 sysfs interface, including:
 
- - The allocation of the GPIO is tied to the process that it is using it, improving control over which GPIO lines are been used by user space processes.
- - It is possible to read or write to multiple GPIO lines at once.
- - It is possible to find GPIO controllers and GPIO lines by name.
- - It is possible to configure the state of the pin (open-source, open-drain, etc).
- - The polling process to catch events (interrupts from GPIO lines) is reliable.
+* The allocation of the GPIO is tied to the process that it is using it, improving control over which GPIO lines are been used by user space processes.
+* It is possible to read or write to multiple GPIO lines at once.
+* It is possible to find GPIO controllers and GPIO lines by name.
+* It is possible to configure the state of the pin (open-source, open-drain, etc).
+* The polling process to catch events (interrupts from GPIO lines) is reliable.

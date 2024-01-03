@@ -5,7 +5,7 @@ categories: ["workflow"]
 tags: ["workflow", "msmtp", "smtp-gmail", "send-mail"]
 ---
 
-In this tutorial, we'll configure everything needed to send emails from the 
+In this tutorial, we'll configure everything needed to send emails from the
 terminal. We'll use msmtp, a lightweight SMTP client. For the sake of the example,
 we'll use a GMail account, but any other email provider can do. Your OS is
 expected to be Ubuntu based, as usual, although it doesn't really matter. We will
@@ -35,7 +35,7 @@ This approach has several advantages:
 So app passwords are a good idea, it just requires a bit of work to set it up.
 Let's see what it takes.
 
-First, `2-Step Verification` must be enabled on your GMail account. Visit 
+First, `2-Step Verification` must be enabled on your GMail account. Visit
 <https://myaccount.google.com/security>, and if that's not the case, enable it.
 You'll need to authorize all of your devices (computer(s), phone(s) and so on),
 and it can be a bit tedious, granted. But you only have to do it once in a lifetime,
@@ -67,7 +67,7 @@ sudo apt install msmtp
 Let's try to send an email. At this point, we did not create any configuration
 file for msmtp yet, so we have to provide every details on the command line.
 
-```
+```bash
 # Write a dummy email
 cat << EOF > message.txt
 From: YOUR_LOGIN@gmail.com
@@ -100,11 +100,11 @@ And it should work already, this email should have been sent and received by now
 
 So let me explain quickly what happened here.
 
-In the file message.txt, 
-we provided 
-From: (the email address of the person sending the email) and 
+In the file message.txt,
+we provided
+From: (the email address of the person sending the email) and
 To: (the destination email address).
- 
+
 Then we asked msmtp to re-use those values to set the envelope of the email with
 `--read-envelope-from` and `--read-recipients`.
 
@@ -128,7 +128,7 @@ into a configuration file.
 msmtp supports two locations: `~/.msmtprc` and `~/.config/msmtp/config`, at your
 preference. In this tutorial we'll use `~/.msmtprc`:
 
-```
+```bash
 cat << 'EOF' > ~/.msmtprc
 defaults
 tls on
@@ -143,6 +143,7 @@ from YOUR_LOGIN@gmail.com
 account default : gmail
 EOF
 ```
+
 And for a quick explanation:
 
 under `defaults` are the default values for all the following accounts.
@@ -151,7 +152,7 @@ finally, the last line defines which account is the default.
 
 All in all it's pretty simple, and it's becoming easier to send an email:
 
-```
+```bash
 # Write a dummy email. Note that the
 # header 'From:' is no longer needed,
 # it's already in '~/.msmtprc'.
@@ -198,6 +199,7 @@ sudo apt install libsecret-tools
 ```
 
 And now we can store our password in the system keyring with this command:
+
 ```bash
 secret-tool store --label msmtp \
     host smtp.gmail.com \
@@ -227,13 +229,13 @@ manual page:
 
 It is possible to override this default though:
 
-> --smtp-server= [...] Alternatively it can specify a full pathname of a 
+> --smtp-server= [...] Alternatively it can specify a full pathname of a
 > sendmail-like program instead; the program must support the -i option.
 
 So in order to use msmtp here, you'd add a snippet like that to your `~/.gitconfig`
 file:
 
-```
+```text
 [sendemail]
     smtpserver = /usr/bin/msmtp
 ```

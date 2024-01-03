@@ -8,8 +8,8 @@ tags: ["kernel", "patching", "netboot", "u-boot", "tftp"]
 ## The Problem
 
 While working on kernel device drivers, we often stumble up-on situations where
-the kernel panics and crashes. But you cannot reflash the system remotely as the
-system goes off the network ; since we could not laod the user space networking
+the kernel panics and crashes. But you cannot re-flash the system remotely as the
+system goes off the network ; since we could not load the user space networking
 stack that is responsible for configuring the network.
 
 Recently , i have hit the same problem with OpenBMC. I was working on a system
@@ -22,11 +22,11 @@ the lab to manually reprogram the flash using tools like `dediprog`.
 In search of ways to *NOT* brick the system, i started looking for ways to
 recover the system even after i crash it. I found 2 ways to do this :
 
-1. Switch sides of BMC flash in uboot
+1. Switch sides of BMC flash in u-boot
 2. Kernel live patching via u-boot tftp
 3. Use simulators like qemu or simics
 
-## Switch sides of BMC flash in uboot
+## Switch sides of BMC flash in u-boot
 
 ast2600 supports two flash banks, so one of them is considered as the active
 or the golden side, the other side is called the non-active side. We could put
@@ -66,7 +66,7 @@ just option #2.
 
 Ensure that you have got a working TFTP server that is in the local network of
 the BMC. If the `tftp` server is not present in the local network and is
-connected via switches and VLAN's we might encounter some wierd issues where you
+connected via switches and VLAN's we might encounter some weird issues where you
 will not be able to send files bigger than a certain range based on the MTU values
 configured in your network between your tftp server and the BMC.
 
@@ -113,9 +113,9 @@ Austin_Team:tftpboot$ ip addr show
 
 ### u-boot network configuration
 
-In my case both the ethernet nodes of ast2600 are manually diabled in u-boot
+In my case both the ethernet nodes of ast2600 are manually disabled in u-boot
 device tree. So i had to enable them. Here are the changes i made in the u-boot
-device tree to enable the network in uboot. In my case the BMC has a dedicated
+device tree to enable the network in u-boot. In my case the BMC has a dedicated
 ethernet connect and *does NOT* have *NCSI*.
 
 ```bash

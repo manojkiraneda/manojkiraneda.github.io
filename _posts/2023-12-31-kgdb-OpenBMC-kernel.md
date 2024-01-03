@@ -1,6 +1,6 @@
 ---
 title: "KGDB on OpenBMC Kernel"
-date: "2023-12-21 05:58PM"
+date: "2023-12-31 05:58PM"
 categories: ["Kernel Debugging"]
 tags: ["kernel", "debugging", "kgdb", "gdb-tui", "tftp debugging"]
 ---
@@ -16,7 +16,7 @@ dry run.
 ## The Problem
 
 I was trying to model the `espi flash channel` as an `mtd device` on BMC. I see the
-module is built successfully, the driver is probed succesfully.But the mtd device
+module is built successfully, the driver is probed successfully.But the mtd device
 is not populated in the `/sys` file system.
 
 ## What is /sys filesystem anyway ?
@@ -56,7 +56,7 @@ Most of the directories here are self explanatory here, for example:
 `/sys/class/gpio` - folder contains all the devices of gpio class
 
 so , if you create an `mtd device`, that its expected to be seen in the `/sys/class/mtd`
-folder, with all vritual files populated to provide its configuration.
+folder, with all virtual files populated to provide its configuration.
 
 ## Hope of figuring out the issue using KGDB
 
@@ -138,7 +138,7 @@ kernel, to get KGDB working:
     cache to disk, reboot the system immediately or dump some status information).
     This is accomplished by pressing various keys while holding SysRq (Alt+PrintScreen).
     It also works on a serial console (on PC hardware at least), if you send a
-    BREAK and then within 5 seconds a command keypress. The keys are documented
+    BREAK and then within 5 seconds a command key press. The keys are documented
     in [Documentation/admin-guide/sysrq.rst](https://www.kernel.org/doc/Documentation/admin-guide/sysrq.rst)
 
 * **CONFIG_DEBUG_INFO=y**
@@ -280,7 +280,7 @@ agent-proxy CONSOLE_PORT^DEBUG_PORT IP_ADDR PORT
         ----------------    ---------
 ```
 
-#### Building a Poxy Agent
+#### Building a Proxy Agent
 
 Below are the steps to build and run a proxy agent:
 

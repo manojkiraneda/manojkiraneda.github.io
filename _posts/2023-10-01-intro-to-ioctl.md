@@ -22,10 +22,10 @@ calls. It works sending a special request code to the device driver to set or
 get specific parameters on the device. The system call accepts the following
 arguments:
 
- - the file descriptor of the device.
- - the device request code (the complete list of registered request codes can be
+- the file descriptor of the device.
+- the device request code (the complete list of registered request codes can be
    retrieved calling ioctl_list).
- - an optional pointer to a memory buffer, to receive the requested data or to
+- an optional pointer to a memory buffer, to receive the requested data or to
    send data to the device.
 
 The code below shows how to open a CD drive tray using ioctl call:
@@ -53,14 +53,15 @@ close(device_fd)
 ```
 
 Although very simple to implement and use, it has a number of downsides:
- - Since the interface requires the user program to manipulate device-driver
+
+- Since the interface requires the user program to manipulate device-driver
    specific internal structures, accomplishing more sophisticate jobs using the
    interface can become very complex. Moreover, the interface is not necessarily
    the same between two different device drivers of the same device type (for
    example, checking the ink level might require a different request for different
    printer vendors)
 
- - There is no fixed behavior for the interface, each distinct request code behaves
+- There is no fixed behavior for the interface, each distinct request code behaves
    in a different way and produces a different result. This make auditing security
    vulnerabilities harder than conventional system calls. Besides, it allows the
    user program to pass arbitrary data to the kernel space, a potential vector
@@ -69,7 +70,7 @@ Although very simple to implement and use, it has a number of downsides:
 As the name implies, ioctl is specific for I/O devices. There are equivalent system
 calls for files and sockets: `fcntl` and `getsockopt`/`setsockopt`, respectively.
 
-## Whats uAPI ? 
+## Whats uAPI ?
 
 In the above example, the CDROM IOCTL number `0x5309` is defined as an include
 as part of the `uAPI`/(User Space API). The [`uapi`](https://github.com/torvalds/linux/tree/master/include/uapi/linux)
