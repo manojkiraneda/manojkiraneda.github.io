@@ -18,9 +18,9 @@ timezone: Asia/Kolkata
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Manojkiran Eda # the main title
+title: Jolts & Jargon # the main title
 
-tagline: Unlocking the Code :: Where Programming, Electronics, and Random Wonders Collide!"
+tagline: A Quest through Electronics, Programming, and Cool Oddities.
 
 description: >- # used by seo meta and the atom feed
   Unlocking the Code: Where Programming, Electronics, and Random Wonders Collide!
