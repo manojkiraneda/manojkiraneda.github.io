@@ -76,7 +76,7 @@ theme_mode: light
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: 'https://ibb.co/YftTj3v'
+avatar: 'https://i.postimg.cc/s2p7p58L/png-transparent-penguin-bird-linux-mascot-punk-tux-unix.png'
 
 # boolean type, the global switch for TOC in posts.
 toc: true
