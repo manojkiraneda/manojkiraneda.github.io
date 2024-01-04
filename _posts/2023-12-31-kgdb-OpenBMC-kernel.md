@@ -6,20 +6,20 @@ tags: ["kernel", "debugging", "kgdb", "gdb-tui", "tftp debugging"]
 ---
 
 It's the most serene period of the year — devoid of notifications, calls, or
-disruptions. Everyone in the vicinity appears content, and I, too wanted to
-experience the joy in successfully concluding the testing of my espi kernel
+disruptions. Everyone in the vicinity appeared content, and I too wanted to
+experience the joy of successfully concluding the testing of my espi kernel
 device driver. Confidence surged within me, this time with a palpable certainty
-that I am on the verge of submitting my inaugural kernel patch and poised to
+that I was on the verge of submitting my inaugural kernel patch and poised to
 conclude the year with a flourish. However, my ordeal commenced with the initial
 dry run.
 
 ## The Problem
 
 I was trying to model the `espi flash channel` as an `mtd device` on BMC. I see the
-module is built successfully, the driver is probed successfully.But the mtd device
+module is built successfully, the driver is probed successfully. But the mtd device
 is not populated in the `/sys` file system.
 
-## What is /sys filesystem anyway ?
+## What is /sys filesystem anyway?
 
 `sysfs` is a pseudo file system provided by the Linux kernel that exports
 information about various kernel subsystems, hardware devices, and associated
