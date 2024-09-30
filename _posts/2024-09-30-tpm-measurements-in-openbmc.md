@@ -1,7 +1,6 @@
 ---
 title: "TPM 101: A Beginner's Guide to TPM Measurements"
-author: manojkiraneda
-date: "2024-09-27 04:20PM"
+date: "2024-09-30 06:20AM"
 categories: ["TPM", "Security", "OpenBMC"]
 tags: ["kernel", "security", "attestation", "tpm", "tpm2-tools", "measurements"]
 ---
