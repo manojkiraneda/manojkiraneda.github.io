@@ -108,7 +108,7 @@ via the I2C bus) between the host machine and a discrete TPM chip.
 ## Why do we need TPM's ? 
 
 In the current day tech, TPM's are being used in various places to solve various
-kinds of problems. But majority og the use-cases are bascially driven from these
+kinds of problems. But majority of the use-cases are bascially driven from these
 3 primary problems.
 
 ##### **Easier to steal sensitive data**
@@ -415,6 +415,12 @@ by external factors, the **TPM** uses specialized circuitry designed to generate
 truly unpredictable, high-entropy numbers. This ensures a much higher level of
 security, as the random numbers produced by the TPM are inherently resistant to
 many forms of attack.
+
+> **Source of true randomness**: A TPM2.0 has at least one internal source of entropy.
+These sources can include noise, clock variations, air movement amongst other events.
+Look at [this article](https://developers.tpm.dev/posts/random-number-generator-tpm2-12528972)
+to understand how tpm2.0 hardware number generator works.
+{: .prompt-tip}
 
 ## The End 
 
