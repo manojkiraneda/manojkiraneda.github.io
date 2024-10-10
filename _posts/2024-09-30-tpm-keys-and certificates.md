@@ -180,9 +180,9 @@ lifecycle.
 {: .prompt-tip}
 
 
-Well, Thats it. Thank you for joining me today.
+Well, That's it. Thank you for joining me today.
 
-In my next article, we will delve into the importance of `Attestation Keys (AKs)`
+In my next article, we will delve into the importance of `Attestation Keys (ask)`
 and explore their necessity even in the presence of Endorsement Keys (EKs). 
 
 Until then, take care and see you soon!

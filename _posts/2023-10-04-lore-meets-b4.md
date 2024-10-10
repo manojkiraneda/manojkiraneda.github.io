@@ -43,7 +43,7 @@ git clone https://github.com/openbmc/
 b4 prep -n dts-aspeed-typo -f dev-6.5
 ```
 
-This creates a brach named `b4/dts-aspeed-typo` based of the dev-6.5 tag.It also
+This creates a branch named `b4/dts-aspeed-typo` based of the dev-6.5 tag.It also
 add an empty commit for the cover letter which we will edit later.
 
 ## Grab a patch to test
@@ -128,7 +128,7 @@ b4 prep --auto-to-cc
 
 ## Dry-run and checkpatch
 
-Next, generate the patches using follwing command and look at their contents to
+Next, generate the patches using following command and look at their contents to
 make sure that everything is looking sane.
 
 ```bash

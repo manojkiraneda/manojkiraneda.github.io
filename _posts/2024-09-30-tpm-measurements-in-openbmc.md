@@ -10,7 +10,7 @@ we delved into the fundamentals of TPM (Trusted Platform Module) and its
 indispensable role in bolstering security. Today, I want to shift gears and
 explore a concept known as `measurements`.
 
-While TPM typically handles encryption and key management, mesurements takes
+While TPM typically handles encryption and key management, measurements takes
 things a step further by providing a mechanism to calculate the integrity of
 software components . So, what does that actually entail, and why is it so
 crucial? Let’s unpack it together.
@@ -55,7 +55,7 @@ is the **measurement** of kernel.
 
 #### 2. **Extending a Measurement**
 
-Extending is bascially generating a hash out of a old hash value & the new hash
+Extending is basically generating a hash out of a old hash value & the new hash
 value.
 
 we can simulate it by combining multiple hashes into one using `sha256sum`.

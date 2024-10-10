@@ -95,7 +95,7 @@ hardware TPM but is more integrated into the system architecture.
 Finally gist is that, `TPM is like a safe in your house`. Inside this safe, you
 can store important keys (like passwords or encryption keys) that only the TPM
 can use. Even if someone breaks into your computer, they can't access what's
-inside the safe (unless some one spends a billion dollars & and use sofisticated
+inside the safe (unless some one spends a billion dollars & and use sophisticated
 hardware tools to break it)
 
 > [TPM Genie](https://github.com/nccgroup/TPMGenie) is designed to aid in
@@ -108,7 +108,7 @@ via the I2C bus) between the host machine and a discrete TPM chip.
 ## Why do we need TPM's ? 
 
 In the current day tech, TPM's are being used in various places to solve various
-kinds of problems. But majority of the use-cases are bascially driven from these
+kinds of problems. But majority of the use-cases are basically driven from these
 3 primary problems.
 
 ##### **Easier to steal sensitive data**
@@ -271,13 +271,13 @@ developers can use to manage TPM resources, keys, and cryptographic functions.
 
 > I tried using both the above stacks & I personally liked the tools that are
 provided in the [tpm2-tools](https://github.com/tpm2-software/tpm2-tools) repository
-are more intutive & easy to use, than the ones that are present as part of the
+are more intuitive & easy to use, than the ones that are present as part of the
 `ibm-tss`. So all my articles would only use `tpm2-tool` commands going forward.
 {: .prompt-tip} 
 
-## Add necessary usespace TPM support to OpenBMC rootfs
+## Add necessary userspace TPM support to OpenBMC rootfs
 [openbmc/openbmc](https://github.com/openbmc/openbmc/tree/master/meta-security/meta-tpm)
-already has all the recipes definied for packages like `tpm2-tss`, `tpm2-tools` 
+already has all the recipes defined for packages like `tpm2-tss`, `tpm2-tools` 
 e.t.c & they are all part of the `meta-security/meta-tpm` layer. All we need to 
 do is just pull them into the image by adding below statement in the 
 `build/<MACHINE>/conf/local.conf` file & we are good to go

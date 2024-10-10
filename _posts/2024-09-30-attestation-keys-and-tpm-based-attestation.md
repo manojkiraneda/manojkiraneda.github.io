@@ -10,7 +10,7 @@ integrity of devices is crucial for maintaining trust and security. One of the
 key mechanisms that enable this assurance is **attestation**.
 
 In this article we will explore the concept of attestation, why it is essential,
-and the importance of Attestation Keys (AKs) in this process, particularly in
+and the importance of Attestation Keys (ask) in this process, particularly in
 relation to the Endorsement Key (EK).
 
 > All the commands mentioned in this article are on OpenBMC software running on 
@@ -75,24 +75,24 @@ attestation purposes can pose challenges related to privacy and security.
 
 2. **Static Nature of EK**:
    - The EK is designed to be a static, long-lived key that uniquely identifies the TPM throughout its lifecycle. Using a static key for all attestation processes could lead to security vulnerabilities if the key is ever compromised.
-   - In contrast, Attestation Keys (AKs) can be generated for specific sessions or applications, allowing for more dynamic and flexible attestation processes.
+   - In contrast, Attestation Keys (ask) can be generated for specific sessions or applications, allowing for more dynamic and flexible attestation processes.
 
 3. **Key Management**:
-   - **Revocation Challenges**: If the EK were compromised, the implications would be severe and complex to manage, as it is a permanent identifier. Revoking or replacing an EK would be difficult, whereas AKs can be easily revoked and regenerated without affecting the underlying EK.
-   - **Multiple Use Cases**: Different applications might have varying security and privacy needs. Using AKs allows for tailored cryptographic operations specific to those needs, improving overall security.
+   - **Revocation Challenges**: If the EK were compromised, the implications would be severe and complex to manage, as it is a permanent identifier. Revoking or replacing an EK would be difficult, whereas ask can be easily revoked and regenerated without affecting the underlying EK.
+   - **Multiple Use Cases**: Different applications might have varying security and privacy needs. Using ask allows for tailored cryptographic operations specific to those needs, improving overall security.
 
 4. **Separation of Roles**:
-   - The EK serves as a trust anchor for the device, primarily used for identification. On the other hand, AKs are specifically designed for the attestation process, enabling devices to prove their integrity without exposing their identity.
+   - The EK serves as a trust anchor for the device, primarily used for identification. On the other hand, ask are specifically designed for the attestation process, enabling devices to prove their integrity without exposing their identity.
    - This separation allows organizations to adopt best practices in security and cryptographic operations.
 
 5. **Enhanced Security**:
-   - Using AKs for attestation reduces the exposure of the EK. This minimizes the risk of compromise associated with exposing the device’s unique identifier during attestation processes.
-   - AKs can be used to sign attestation reports while keeping the EK secure and isolated, ensuring that the integrity and identity of the device remain intact.
+   - Using ask for attestation reduces the exposure of the EK. This minimizes the risk of compromise associated with exposing the device’s unique identifier during attestation processes.
+   - ask can be used to sign attestation reports while keeping the EK secure and isolated, ensuring that the integrity and identity of the device remain intact.
 
 ## The Importance of Attestation Keys (AK)
 
 To address these challenges, we generate additional key pair called Attestation
-Keys (AKs). Here are the steps to create an AK :
+Keys (ask). Here are the steps to create an AK :
 1. Create a Primary Key
 2. Create the Attestation Key (AK)
 3. Load the Attestation Key into the TPM
@@ -289,7 +289,7 @@ ERROR: Unable to run tpm2_checkquote
 
 Once the quote verification is successful, then we can safely assure that the
 device mesaurements that are reported by the TPM under test are indeed generated
-by the device itself and is not really fabricated by evesdropper.
+by the device itself and is not really fabricated by eavesdropper.
 
 
 ## Comparing Quoted PCR Values to the Reference Manifest
@@ -308,7 +308,7 @@ values for a secure system. It serves as a benchmark for comparison.
 3. **Comparison**: Check each quoted PCR value against the values in the reference manifest.
 Any differences can indicate potential issues or unauthorized changes in the system.
 
-4. **Decision Making**:
+4. **Decision Making**:ß
    - **If they match**: The system is considered secure and can continue operating normally.
    - **If they don’t match**: This suggests that something might be wrong. It could mean the system has been compromised, and further investigation is needed. In such cases, actions like stopping operations or alerting security teams may be necessary.
 

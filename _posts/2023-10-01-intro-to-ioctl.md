@@ -70,7 +70,7 @@ Although very simple to implement and use, it has a number of downsides:
 As the name implies, ioctl is specific for I/O devices. There are equivalent system
 calls for files and sockets: `fcntl` and `getsockopt`/`setsockopt`, respectively.
 
-## Whats uAPI ?
+## What's uAPI ?
 
 In the above example, the CDROM IOCTL number `0x5309` is defined as an include
 as part of the `uAPI`/(User Space API). The [`uapi`](https://github.com/torvalds/linux/tree/master/include/uapi/linux)

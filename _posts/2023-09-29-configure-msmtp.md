@@ -105,7 +105,7 @@ we provided
 From: (the email address of the person sending the email) and
 To: (the destination email address).
 
-Then we asked msmtp to re-use those values to set the envelope of the email with
+Then we asked msmtp to reuse those values to set the envelope of the email with
 `--read-envelope-from` and `--read-recipients`.
 
 What about the other parameters?

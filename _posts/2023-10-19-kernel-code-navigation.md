@@ -45,7 +45,7 @@ Here is what clangd can do:
 - clangd embeds clang-format, which can reformat your code: fixing indentation,
   breaking lines, and reflowing comments.
 
-## Whats neovim ?
+## What's neovim ?
 
 Neovim is a refactor, and sometimes redactor, in the tradition of Vim (which
 itself derives from Stevie). It is not a rewrite but a continuation and extension

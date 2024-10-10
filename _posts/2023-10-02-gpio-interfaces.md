@@ -68,7 +68,7 @@ perspective this is a `wire-OR`.
 Debouncing is a configuration set to a pin indicating that it is connected to a
 mechanical switch or button, or similar that may bounce. Bouncing means the line
 is pulled high/low quickly at very short intervals for mechanical reasons. This
-can result in the value being unstable or irqs fireing repeatedly unless the line
+can result in the value being unstable or irqs firing repeatedly unless the line
 is debounced.
 
 Debouncing in practice involves setting up a timer when something happens on the
