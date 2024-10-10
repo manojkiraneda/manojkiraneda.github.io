@@ -5,16 +5,16 @@ categories: ["TPM", "Security", "OpenBMC"]
 tags: ["kernel", "security", "attestation", "tpm", "tpm2-tools", "measurements"]
 ---
 
-Have you ever wondered what makes a Trusted Platform Module (TPM) tick? Today,
-we’re diving into the fascinating world of keys and certificates nestled within
-this tiny security powerhouse. But before we embark on this techy adventure,
-let’s take a moment to acknowledge the real MVP behind our productivity: mom's
-tea.
+Have you ever thought about what makes a Trusted Platform Module (TPM) work?
 
-That's right! It’s not just caffeine that fuels our late-night coding sessions 
-and security research—it's the warm, comforting brew that keeps us alert and,
-dare I say, a bit more brilliant. So, grab your cup of mom’s finest, and let’s 
-unlock the secrets of the TPM together!
+Today, we’re going to explore the world of keys and certificates that are stored
+in this little security house. 
+
+----
+But first, let’s take a moment to appreciate the real hero behind our
+productivity: mom’s tea. That’s right! It’s that warm, comforting cup of tea that
+keeps us focused and, let’s be honest, a bit sharper. So, grab a cup of your 
+mom’s best brew!, and let’s dive into the secrets of the TPM together!
 
 
 > All the commands mentioned in this article are on OpenBMC software running on 
@@ -54,7 +54,7 @@ key role in establishing trust between a computer or device and other systems.
 Its essentially a unique, secret key pair that is embedded into  the device’s
 Trusted Platform Module (TPM) when the device is manufactured. It serves as a
 proof of the device’s identity and authenticity, kind of like a birth certificate
-for the computer's hardware.
+for the TPM's hardware.
 
 Following are the traits for EK :
 - **`Unique`**: Every TPM has its own EK, which means no two devices have the same EK.
@@ -182,7 +182,7 @@ lifecycle.
 
 Well, That's it. Thank you for joining me today.
 
-In my next article, we will delve into the importance of `Attestation Keys (ask)`
+In my next article, we will delve into the importance of `Attestation Keys (AK)`
 and explore their necessity even in the presence of Endorsement Keys (EKs). 
 
 Until then, take care and see you soon!

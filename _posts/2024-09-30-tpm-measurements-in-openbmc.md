@@ -89,7 +89,7 @@ important measurements (hash values like above) from your computer. These
 measurements could be things like which software is running or how your system
 is set up.
 
-Every time your computer starts, the some firmware component of the OS writes
+Every time your computer starts, some firmware component of the OS writes
 the measurements into the TPM and stores them in the PCRs. It does this to make
 sure that nothing has been changed or tampered with. For example, if someone tries
 to install unapproved software or change a setting, the PCRs will record the
@@ -97,7 +97,7 @@ difference.
 
 PCRs are really important because they help ensure that your computer stays secure
 by making sure everything is exactly how it should be. When you need to check if
-your system is trustworthy (like during attestation), the TPM will use the information
+your system is trustworthy (like during [attestation](https://manojkiraneda.github.io/posts/attestation-keys-and-tpm-based-attestation/)), the TPM will use the information
 stored in the PCRs to prove that everything is still secure.
 
 `In TPM, this is how extending works`: new values are hashed together with old ones
